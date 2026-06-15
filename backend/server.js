@@ -10,6 +10,8 @@ const aiRoutes = require('./routes/aiRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const workspaceRoutes = require('./routes/workspaceRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
+const documentRoutes = require('./routes/documentRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
 const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
@@ -39,6 +41,8 @@ app.use('/api/ai', authMiddleware, aiRoutes);
 app.use('/api/tasks', authMiddleware, taskRoutes);
 app.use('/api/workspaces', authMiddleware, workspaceRoutes);
 app.use('/api/analytics', authMiddleware, analyticsRoutes);
+app.use('/api/documents', authMiddleware, documentRoutes);
+app.use('/api/notifications', authMiddleware, notificationRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {
