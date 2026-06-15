@@ -16,15 +16,19 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*', // Allows all origins for local testing
+    origin: function (origin, callback) {
+      callback(null, true);
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE']
   }
 });
 
 // CORS configuration for production & local development
 app.use(cors({
-  origin: ['http://localhost:5173', process.env.FRONTEND_URL],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: function (origin, callback) {
+    callback(null, true); // Allow all Vercel/Render preview URLs dynamically
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
 app.use(express.json());
