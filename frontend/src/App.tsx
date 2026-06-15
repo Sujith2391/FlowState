@@ -6,6 +6,11 @@ import { Dashboard } from './pages/Dashboard'
 import { IssuesView } from './pages/IssuesView'
 import { Analytics } from './pages/Analytics'
 import { Auth } from './pages/Auth'
+import { Inbox } from './pages/Inbox'
+import { Documents } from './pages/Documents'
+import { Team } from './pages/Team'
+import { Settings } from './pages/Settings'
+import { Views } from './pages/Views'
 
 // Global Axios Interceptor for JWT
 axios.interceptors.request.use(config => {
@@ -41,7 +46,12 @@ function App() {
           <Route index element={<Navigate to="issues" replace />} />
           <Route path="issues" element={<IssuesView />} />
           <Route path="analytics" element={<Analytics />} />
-          <Route path="*" element={<div className="p-10 text-gray-400">This view is under construction.</div>} />
+          <Route path="inbox" element={<Inbox />} />
+          <Route path="documents" element={<Documents />} />
+          <Route path="team" element={<Team />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="views" element={<Views />} />
+          <Route path="*" element={<div className="flex h-full w-full items-center justify-center p-10 text-gray-400">This view is under construction.</div>} />
         </Route>
       </Routes>
     </BrowserRouter>
